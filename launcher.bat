@@ -25,12 +25,18 @@ echo.&set /p choice=Choisir une option ou ENTER pour quitter : ||GOTO:END
 echo.&call:menuMain_%choice%
 GOTO:menuMain
 
+:menuMain_1  Survival_Solo
+	call:start_server Survival_Solo
+GOTO:EOF
+
 :menuMain_4  Survival_4
 	call:start_server Survival_4
 GOTO:EOF
 
 :start_server
-  start "%PZDedicatedServer%\StartServer64.bat" -servername %1
+  echo.%PZDedicatedServer%\StartServer64.bat -servername %1
+  start "%1" "%PZDedicatedServer%\StartServer64.bat" -servername %1
+  pause
 GOTO:EOF
 
 :error
